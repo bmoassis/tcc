@@ -18,7 +18,12 @@ df_comorbidades = st.session_state['dados']['df_comorbidades']
 # Tratando base de dados
 df_pacientes["REINTERNADO"] = df_pacientes["TOTAL_INTERNACOES"] > 1
 df_pacientes = pd.get_dummies(df_pacientes, columns=['SITUACAO'], drop_first=True)
-df_final = df_pacientes.iloc[:, [1, 5, 6, 7]]
+comorb = pd.DataFrame(df_comorbidades.groupby("CD_PACIENTE")["COMORBIDADES"].count())
+df_final = pd.merge(df_pacientes, comorb, on='CD_PACIENTE')
+
+df_final = df_final.iloc[:, [1, 6 ]]
+
+st.dataframe(df_final)
 
 # Treinando o modelo 
 X = df_final.drop('REINTERNADO', axis=1)
