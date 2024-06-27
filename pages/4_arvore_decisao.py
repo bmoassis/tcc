@@ -5,7 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
-import matplotlib.pyplot as plt 
+import matplotlib as plt 
 from graphviz import Source
 from sklearn.tree import plot_tree
 from sklearn.tree import export_graphviz
