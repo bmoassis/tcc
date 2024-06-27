@@ -19,6 +19,9 @@ num_pac = df_reinternacao["REINTERNADO"].value_counts()
 comorb = pd.DataFrame(df_comorbidades.groupby("CD_PACIENTE")["COMORBIDADES"].count())
 df_reinternacao = pd.merge(df_reinternacao, comorb, on='CD_PACIENTE')
 
+pac_comorb = pd.DataFrame(df_reinternacao.groupby("COMORBIDADES")["COMORBIDADES"].count())
+pac_comorb = pac_comorb.rename(columns={'': 'COMORBIDADES', 'COMORBIDADES': 'Quantidade'})
+
 comorb = df_reinternacao['COMORBIDADES']
 
 st.markdown('# Análise de Comorbidades')
@@ -34,6 +37,9 @@ int_comorb = df_reinternacao.sort_values(by=['TOTAL_INTERNACOES'], ascending=Fal
 col3.dataframe(int_comorb.head(10))
 
 int_comorb = df_reinternacao.groupby("COMORBIDADES")["TOTAL_INTERNACOES"].sum()
+
+st.subheader('Quantidade de Pacientes por N° de Comorbidades')
+st.bar_chart(pac_comorb)
 
 st.subheader('Quantidade de Comorbidades por N° de Internações')
 st.bar_chart(int_comorb)
