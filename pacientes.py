@@ -95,4 +95,5 @@ st.bar_chart(internacao)
 # Quantidade de pacientes por N° internações
 st.subheader('Quantidade de Internações por Idade')
 internacao_idade = pd.DataFrame(df_reinternacao.groupby("IDADE")["TOTAL_INTERNACOES"].sum())
+internacao_idade = internacao_idade.rename(columns={'IDADE': 'IDADE', 'TOTAL_INTERNACOES': 'Quantidade'})
 st.scatter_chart(internacao_idade)
