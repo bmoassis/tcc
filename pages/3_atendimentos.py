@@ -27,7 +27,7 @@ st.bar_chart(mes)
 hora = pd.DataFrame(atendimentos.groupby("HORA")["HORA"].count())
 hora = hora.rename(columns={'': 'HORA', 'HORA': 'Quantidade'})
 st.subheader('N° de Atendimentos por Hora')
-st.scatter_chart(hora)
+st.bar_chart(hora)
 
 risco = pd.DataFrame(atendimentos.groupby("RISCO")["RISCO"].count())
 risco = risco.rename(columns={'': 'risco', 'RISCO': 'Quantidade'})
